@@ -25,7 +25,7 @@
           <hr/>
           <br/>
           <div id="loader">
-            <p class="text-center">Loading...sd</p>
+            <p class="text-center">Loading...</p>
           </div>
           <div id="content" style="display: none;">
             <table class="table">
@@ -39,7 +39,16 @@
               <tbody id="candidatesResults">
               </tbody>
             </table>
-          </hr>
+            <hr/>
+            <form onSubmit="App.castVote(); return false;">
+              <div class="form-group">
+                <label for="candidatesSelect">Select Candidate</label>
+                <select class="form-control" id="candidatesSelect">
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Vote</button>
+              <hr />
+            </form>
             <p id="accountAddress" class="text-center"></p>
           </div>
         </div>

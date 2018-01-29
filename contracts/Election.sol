@@ -7,6 +7,8 @@ contract Election {
         string name;
         uint votecount;
     }
+    mapping(address=> bool) public voters;
+
     mapping(uint=> Candidate) public candidates;
 
     uint public candidatesCount;
@@ -20,5 +22,17 @@ contract Election {
     function addCandidate (string memory _name) private {
         candidatesCount++;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    }
+    function vote(uint _candidateId) public {
+        //voter has not voted before
+        require(!voters[msg.sender]);
+
+        // this is a valid candidate ID
+        require(_candidateId>0 && _candidateId<= candidatesCount);
+
+        //Gas will be refunded to the sender if rest of the will not execute
+
+        voters[msg.sender] = true;
+        candidates[_candidateId].votecount++;
     }
 }
